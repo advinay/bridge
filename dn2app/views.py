@@ -1,10 +1,10 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,url_for
 
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-from .utils import load_equipe,load_rencontres,tirage_global
+from .utils import load_equipe,load_rencontres,tirage_global,stats
 
 
 # Create database connection object
@@ -21,26 +21,25 @@ app.config.from_object('config')
 def index():
 
 
-  tirage_global(db)
-  results=load_equipe()
+  return render_template('index.html')
 
 
-  rencontres=load_rencontres()
-
-  return render_template('index.html',table=results,matches=rencontres)
-
-
-@app.route('/unesimu')
+@app.route('/unesimu/')
 def unesimu():
 
 
-  tirage_global(db)
-  results=load_equipe()
+  (results,rencontres)=tirage_global(db)
 
-
-  rencontres=load_rencontres()
 
   return render_template('unesimu.html',table=results,matches=rencontres)
+
+
+@app.route('/stat')
+def stats_fin():
+
+	stats(db)
+
+	return render_template('stats.html')
 
 
 

@@ -8,20 +8,25 @@
 <body>
 
 <div class="container">
+<br>
+<br>	
+<h2>DN2 : et si c'était du hasard ...</h1>
+
+<br>
+
+<div class="row">
+	<div class="col">
+	<a href="{{url_for('unesimu',_external=True)}}" class="btn btn-primary" role="button">Une simu</a>
+	</div>
 
 
-<button type="button" class="btn btn-primary">Une simu</button>
 
-<h1>Résultats finaux</h1>
+	<div class="col">
 
+	<a href="{{url_for('stats_fin',_external=True)}}" class="btn btn-primary" role="button">1000 simus</a/>
+	</div>
 
-
-{{table}}
-
-<h1>Résultats par tour</h1>
-
-{{matches}}
-
+</div>
 
 </div>
 
